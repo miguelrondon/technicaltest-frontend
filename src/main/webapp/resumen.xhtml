@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    
+
+    <ui:composition template="layout.xhtml">
+        <ui:define name="left">
+            <p:card>
+                <f:facet name="title">
+                    Datos del Cliente
+                </f:facet>
+                <f:facet name="subtitle">
+                    <small>La póliza será emitida a nombre de este cliente</small>
+                </f:facet>
+                <div class="ui-fluid">
+
+                    <div class="p-field">
+                        <p:outputLabel for="brand" value="Nombre" />
+                        <p:inputText id="brand" required="true" />
+                    </div>
+                </div>
+
+                <f:facet name="footer">
+                    <h:form>
+                        <p:commandButton type="button" icon="pi pi-save" value="Guardar" onclick="createPolicy()" />
+                    </h:form>
+                </f:facet>
+            </p:card>
+        </ui:define>
+
+        <ui:define name="content">
+            <p:card>
+
+
+                <div class="flex mb-2 justify-content-between">
+                    <div class="text-2xl text-bold">Resumen</div>
+                    <div class="text-2xl text-bold">Póliza No. 0000000</div>
+                </div>
+
+                <div class="flex flex-column">
+                    <p:card class="mb-2">
+                        <f:facet name="subtitle">Vehículos</f:facet>
+                        <ui:repeat value="#{index.vehicles}" var="vehicle">
+                            <div class="flex gap-2">
+                                <div>#{vehicle.brand}</div>
+                                <div>#{vehicle.model}</div>
+                                <div>#{vehicle.year}</div>
+                                <div>#{vehicle.plateNumber}</div>
+                            </div>
+                        </ui:repeat>
+                    </p:card>
+                    <p:card>
+                        <f:facet name="title">Coberturas</f:facet>
+                        <ui:repeat value="#{index.coverages}" var="coverage">
+                            <div class="flex gap-2 pb-2">
+                                <div class="pi pi-check"></div>
+                                <div>#{coverage}</div>
+                            </div>
+                        </ui:repeat>
+                    </p:card>
+                </div>
+
+            </p:card>
+        </ui:define>
+    </ui:composition>
+</html>
+

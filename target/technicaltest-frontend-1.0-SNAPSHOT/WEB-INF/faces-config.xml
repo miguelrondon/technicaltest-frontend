@@ -1,0 +1,7 @@
+<navigation-rule>
+    <from-view-id>/index.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>resumen</from-outcome>
+        <to-view-id>/resumen.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>

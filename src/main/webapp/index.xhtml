@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+
+        <title>Esta es una prueba con primefaces</title>
+    </h:head>
+<!--    <h:body>-->
+
+        <ui:composition template="layout.xhtml">
+            <ui:define name="left">
+                <p:card id="left-card">
+                    <f:facet name="title">
+                        Detalles del Vehículo
+                    </f:facet>
+                    <f:facet name="subtitle">
+                        <small>Introduce los datos generales del vehículo</small>
+                        <p:messages id="messages" showDetail="false" />
+                    </f:facet>
+                    <div class="ui-fluid">
+
+                        <div class="p-field">
+                            <p:outputLabel for="brand" value="Marca" />
+                            <p:inputText id="brand" value="#{index.vehicle.brand}" required="true" />
+                            <p:selectOneMenu>
+                                <f:selectItems value="#{index.brands}" var="brand" itemLabel="#{brand.label}" itemValue="#{brand.value}" />
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="p-field">
+                            <p:outputLabel for="model" value="Modelo" />
+                            <p:inputText id="model" value="#{index.vehicle.model}" required="true"/>
+                            
+                        </div>
+                        <div class="p-field">
+                            <p:outputLabel for="year" value="Año" />
+                            <p:inputText id="year" value="#{index.vehicle.year}" required="true"/>
+                            
+                            
+                        </div>
+                        <div class="p-field">
+                            <p:outputLabel for="vinNumber" value="Chasis" />
+                            <p:inputText id="vinNumber" value="#{index.vehicle.vinNumber}" required="true"/>
+                            
+                        </div>
+                        <div class="p-field">
+                            <p:outputLabel for="plateNumber" value="Placa" />
+                            <p:inputText id="plateNumber" value="#{index.vehicle.plateNumber}" required="true"/>
+                             
+                        </div>
+
+                    </div> 
+                   
+                    <f:facet name="footer">
+                        <p:commandButton icon="pi pi-save" value="Guardar" action="#{index.send(index.vehicle)}" update="left-card vehicles" process="@form" />
+                    </f:facet>
+                </p:card>
+            </ui:define>
+            <ui:define name="content">
+
+
+                <p:card id="vehicles">
+                    <f:facet name="title">
+                        Mis Vehículos
+                        <p:divider></p:divider>
+                    </f:facet>
+                    <ui:repeat value="#{index.vehicles}" var="vehicle">
+                        <p:card rendered="#{not empty index.vehicles}" class="mb-2">
+                            <f:facet name="subtitle">Detalles del Vehiculo #- #{index.vehicles.indexOf(0) +1 }</f:facet>
+                            <div class="flex flex-row justify-content-between align-items-center">
+                                <div class="font-bold">Marca</div>
+                                <div class="font-bold">Modelo</div>
+                                <div class="font-bold">Año</div>
+                            </div>
+                            <div class="flex flex-row justify-content-between align-items-left">
+                                <div class="font-normal">#{vehicle.brand}</div>
+                                <div class="font-normal">#{vehicle.model}</div>
+                                <div class="font-normal">#{vehicle.year}</div>
+                            </div>
+                            <div class="pt-3 flex flex-row justify-content-between align-items-center">
+                                <div class="font-bold">Chasis</div>
+                                <div class="font-bold">Placa</div>
+                                <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                            </div>
+                            <div class="flex flex-row justify-content-between align-items-left">
+                                <div class="font-normal">#{vehicle.vinNumber}</div>
+                                <div class="font-normal">#{vehicle.plateNumber}</div>
+                                <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                            </div>
+                            <div class="flex justify-content-end">
+                                <p:commandButton icon="pi pi-trash" action="#{index.remove(vehicle)}" styleClass="ui-button-danger" process="@this"></p:commandButton>
+
+                            </div>
+                        </p:card>
+                    </ui:repeat>
+                    <div class="flex justify-content-end">
+                        <p:commandButton icon="pi pi-arrow-right" value="Continuar" action="resumen" process="@this"></p:commandButton>
+                    </div>
+                </p:card>
+
+            </ui:define>
+        </ui:composition>
+
+
+    <!--</h:body>-->
+</html>
+
