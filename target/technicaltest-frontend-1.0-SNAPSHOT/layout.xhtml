@@ -7,7 +7,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        
+
         <h:outputStylesheet library="webjars" name="primeflex/3.3.1/primeflex.min.css" />
         <title>Esta es una prueba con primefaces</title>
     </h:head>
@@ -15,23 +15,34 @@
         <h:outputScript>
             var a = #{index.toJson()};
         </h:outputScript>
-         <script>
+        <script>
+
             function createPolicy() {
-                
+
                 let vehicles = JSON.stringify(a);
-                console.log('me estoy llamando por que me hiciste click',s);
-                
-                fetch('http://localhost:8081/policy',{
-                    method:'POST',
+                console.log('me estoy llamando por que me hiciste click', vehicles);
+                fetch('http://localhost:8081/policy', {
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body:vehicles
-                }).then(data =>{}).catch (error => { console.log('Error',error); }) {
-    
-}
+                    body: vehicles
+                })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Error de red: ' + response.statusText);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log(data);
+                            // Manejar la respuesta según sea necesario
+                        })
+                        .catch(error => {
+                            console.error('Error al llamar a la API:', error);
+                        });
 
-                        
+
             }
         </script>
         <h:form>

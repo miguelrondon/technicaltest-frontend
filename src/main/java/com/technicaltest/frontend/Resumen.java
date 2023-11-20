@@ -6,8 +6,13 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class Resumen {
-    
-    public void CreatePolicy() {
-        System.out.println("este es el metodo que creara la poliza");
+   String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

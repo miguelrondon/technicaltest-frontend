@@ -19,14 +19,23 @@ public class Index {
     private List<Brand> brands = new ArrayList<>();
     private List<String> coverages = new ArrayList<>();
 
-    public Index() {
-        this.brands.add(new Brand("Toyota", "Toyota"));
-        this.brands.add(new Brand("Honda", "Honda"));
-        this.brands.add(new Brand("Hyundai", "Hyundai"));
-        this.brands.add(new Brand("Mitsubishi", "Mitsubishi"));
-        this.brands.add(new Brand("BMW", "BMW"));
-        this.brands.add(new Brand("Mercedes-Benz", "Mercedes-Benz"));
+    private Customer customer = new Customer();
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+    public Index() {
+//        this.brands.add(new Brand("Toyota", "Toyota"));
+//        this.brands.add(new Brand("Honda", "Honda"));
+//        this.brands.add(new Brand("Hyundai", "Hyundai"));
+//        this.brands.add(new Brand("Mitsubishi", "Mitsubishi"));
+//        this.brands.add(new Brand("BMW", "BMW"));
+//        this.brands.add(new Brand("Mercedes-Benz", "Mercedes-Benz"));
+//
         this.coverages.add("Daños a la Propiedad Ajena 1,000,000");
         this.coverages.add("Lesiones o Muerte 1 Persona 1,000,000");
         this.coverages.add("Lesiones o Muerte a más de 1 Persona 2,000,000");
@@ -91,6 +100,7 @@ public class Index {
         if (vehicles.size() > 0) {
 
             Policy policy = new Policy();
+            policy.setCustomer(customer);
             policy.setVehicles(vehicles);
             
             Gson gson = new Gson();
@@ -98,6 +108,11 @@ public class Index {
             
             return array;
         }
-        return "{}";
+        return "[]";
+    }
+    public String setCustomerName(String name) {
+        System.out.println(name);
+        customer.setName(name);
+        return "policyinfo?faces-redirect=true";
     }
 }

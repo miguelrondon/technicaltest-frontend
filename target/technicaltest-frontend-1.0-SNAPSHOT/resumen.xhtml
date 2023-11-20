@@ -6,8 +6,6 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-    
-
     <ui:composition template="layout.xhtml">
         <ui:define name="left">
             <p:card>
@@ -20,16 +18,20 @@
                 <div class="ui-fluid">
 
                     <div class="p-field">
-                        <p:outputLabel for="brand" value="Nombre" />
-                        <p:inputText id="brand" required="true" />
+                        <p:outputLabel for="name" value="Nombre" />
+                        <p:inputText id="name" value="#{resumen.name}" required="true" />
                     </div>
                 </div>
 
                 <f:facet name="footer">
-                    <h:form>
-                        <p:commandButton type="button" icon="pi pi-save" value="Guardar" onclick="createPolicy()" />
-                    </h:form>
-                </f:facet>
+                    <!--                    <h:form>
+                                            <p:commandButton type="button" icon="pi pi-save" value="Guardar" onclick="createPolicy()" />
+                    
+                                        </h:form>-->
+                    <div class="flex gap-2">
+                        <p:commandButton icon="pi pi-save" value="Guardar" action="#{index.setCustomerName(resumen.name)}"></p:commandButton>
+                    </div>
+                </f:facet>  
             </p:card>
         </ui:define>
 
@@ -39,7 +41,7 @@
 
                 <div class="flex mb-2 justify-content-between">
                     <div class="text-2xl text-bold">Resumen</div>
-                    <div class="text-2xl text-bold">Póliza No. 0000000</div>
+<!--                    <div class="text-2xl text-bold">Póliza No. 0000000</div>-->
                 </div>
 
                 <div class="flex flex-column">

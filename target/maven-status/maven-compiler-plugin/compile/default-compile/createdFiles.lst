@@ -1,4 +1,6 @@
+com\technicaltest\frontend\Customer.class
+com\technicaltest\frontend\Policy.class
 com\technicaltest\frontend\Vehicle.class
 com\technicaltest\frontend\Resumen.class
-com\technicaltest\frontend\Index.class
 com\technicaltest\frontend\Brand.class
+com\technicaltest\frontend\Index.class

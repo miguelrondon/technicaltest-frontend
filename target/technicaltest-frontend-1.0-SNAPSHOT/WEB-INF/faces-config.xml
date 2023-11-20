@@ -3,5 +3,9 @@
     <navigation-case>
         <from-outcome>resumen</from-outcome>
         <to-view-id>/resumen.xhtml</to-view-id>
+        <redirect/>
     </navigation-case>
+    
 </navigation-rule>
+
+
